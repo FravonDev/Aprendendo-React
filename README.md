@@ -1,70 +1,213 @@
-# Getting Started with Create React App
+<aside>
+💡 Estas são minhas anotações sobre o curso de React do Matheus Battisti - Hora de Coda
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+</aside>
 
-## Available Scripts
+Aprender react e ao final do curso vamos criar uma aplicação Fullstack com JSON server e React
 
-In the project directory, you can run:
+react é uma **biblioteca,** que serve para criar interfaces do usuário (UI)
 
-### `npm start`
+o react é usado para criar **SPAs** (Single Page Application), também é baseado em componentes e Utiliza **JSX** para renderizar HTML.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+react usa **Virtual DOM** para realizar as alterações na tela.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Para usar react precisamos do Node e npm instalados
+- para instalar o React vamos utilizar a ferramenta **Create React App** (**CRA**)
+- esta ferramenta também otimiza o App gerado para produção
 
-### `npm test`
+para iniciar um projeto use o comando
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```jsx
+npx create-react-app nome-app
+```
 
-### `npm run build`
+O React usa **JSX**, que como um **HTML** que dentro  JavaScript, com ele podemos:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+escrever código HTML dentro do código javascript, Inserir valores em atributos de tags, interpolar váriaveis, salvar HTML dentro de variaveis, executar funções em **JSX**, renderizar variáveis, executar funções usar loops, receber dados de uma api e renderizar na tela.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Um **componente** em react, basicamente é uma função que retorna JSX, 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+onde podemos fazer varias coisa, inclusive criar funçoes dentro da nossa função,
 
-### `npm run eject`
+lembre-se que o **JSX** só pode entregar um elemento então caso queiramos usar vários elementos, simplismente colocamos eles dentro de uma div
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```jsx
+import "./App.css";
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+function App() {
+  const url = "https://via.placeholder.com/150";
+  const name = "fravon";
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  function sum(a, b) {
+    return a + b;
+  }
+  return (
+    <div className="App">
+      <h1>App com react</h1>
+      <p> Eae {name} </p>
+      <p> Soma {sum(3, 3)}</p>
+      <img src={url} alt="Minha imagem" />
+    </div>
+  );
+}
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+export default App;
+```
 
-## Learn More
+**componentes**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Componentes  nos permitem dividir a aplicação em partes, o que nos trás vários beneficios como reutilização de código, facilita a manutenção, como os componentes são isolados fica mais facil manter e atualizar o código ao longo do tempo.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Utilizando componentes, o código fica mais legível e fácil de entender, o que facilita o processo de desenvolvimento em geral, e ainda é facil de testar isoladamente, isso facilita o processo de testes e garante que o aplciativo esteja sempre funcionando corretamente.
 
-### Code Splitting
+Os componentes renderizam JSX, assim como o App.js que é o nosso componente principal, grande parte dos componentes vão estar nele.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+precisamos criar um arquivo de componente e depois importa-lo para onde precisar utilizar
 
-### Analyzing the Bundle Size
+normalmente ficam em uma **pasta** chamada **components**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+quando criar um componente lembre de deixar a primeira letra Maiúscula (**Pascal case**)
 
-### Making a Progressive Web App
+Então na pasta components, crie o arquivo:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**HelloWorld.js**
 
-### Advanced Configuration
+Dentro desse arquivos vamos criar uma função e exportar
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```jsx
+function HelloWorld(){
+    return (
+        <div>Montamos um component</div>
+    );
+};
 
-### Deployment
+export default HelloWorld;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+depois vamos usar o nosso componente
 
-### `npm run build` fails to minify
+```jsx
+import "./App.css";
+import HelloWorld from "./components/HelloWorld";
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+function App() {
+  const url = "https://via.placeholder.com/150";
+  const name = "fravon";
+
+  function sum(a, b) {
+    return a + b;
+  }
+  return (
+    <div className="App">
+      <h1>App com react</h1>
+      <p> Eae {name} </p>
+      <p> Soma {sum(3, 3)}</p>
+      <img src={url} alt="Minha imagem" />
+      <HelloWorld/>
+    </div>
+  );
+}
+
+export default App;
+```
+
+**Props**
+
+As props são valores passados para componentes, podemos deixar os componentes dinamicos, ou seja nosso component pode mudar por causa do valor da prop.
+
+o valor poder ser passado como um atributo na chamada do componente, precisa ser resgatado dentro de  uma propriedade/argumento chamada props e as props são somente de leitura.
+
+criamos um component com o nome SayMyName, que espera a prop chamada name
+
+```jsx
+function SayMyName(props){
+    return(
+        <div>
+            <p>Fala ai {props.name}, suave?</p>
+        </div>
+    );
+}
+export default SayMyName;
+```
+
+depois disso é só importar nosso componente SayMyName, passar a prop name como se fosse atributo src da tag img e usar:
+
+```jsx
+import "./App.css";
+import HelloWorld from "./components/HelloWorld";
+import SayMyName from "./components/SayMyname";
+
+function App() {
+  return (
+    <div className="App">
+      <HelloWorld/>
+      <SayMyName name="Fravon"/>
+    </div>
+  );
+}
+
+export default App;
+```
+
+Neste outro component chamado “**Pessoa”** utilize Destructuring, para o código um pouco menor
+
+```jsx
+function Pessoa({nome,idade,foto,profissao}) {
+    return(
+        <div>
+            <img src={foto} alt={nome}/>
+            <p>Nome: {nome}</p>
+            <p>Idade: {idade}</p>
+            <p>Profissao: {profissao}</p>
+        </div>
+    )
+}
+
+export default Pessoa;
+```
+
+depois é só importar o componente e usar
+
+```jsx
+function App() {
+  return (
+    <div className="App">
+      <SayMyName name="Fravon"/>
+      <HelloWorld/>
+      <Pessoa profissao="Desenvolvedor Web Fullstack" nome="Fravon" idade="22" foto="https://via.placeholder.com/150" />
+    </div>
+  );
+}
+
+export default App;
+```
+
+**Estilização com css**
+
+O css também pode ser utilizado de forma global, o arquivo index.css vem na instalação do CRA,
+
+e com ele podemos fazer estilização global.
+
+mas é muito interessante estilizara nivel de componente, pois em arquivos maiores é muito dificil trabalhar com o css global, então usar css a nivel de componentes além de ser mais produtivo não temos problemas com sobreposição de estilos.
+
+pra isso vamos usar o **CSS modules,** basta criar um arquivo como: Componente.module.css
+
+Fique atento com o nome nos seletores: não use **frase-container** use ****************fraseContainer****************
+
+pois não vai funcionar
+
+após criar nosso estilo. devemos importar ele pro nosso componente. pra importar ele é igual fariamos com um componente, damos um nome e pegamos o seu diretório.
+
+Desta forma podemos colocar o estilo usando ClassName usando o **JSX**
+
+```jsx
+import styles from "./Frase.module.css"
+function Frase(){
+    return(
+        <div className={styles.fraseContainer}>
+            <p>Este é um componente com uma frase</p>
+        </div>
+    )
+}
+export default Frase;
+```
