@@ -1,25 +1,14 @@
 import "./App.css";
-import HelloWorld from "./components/HelloWorld";
-import Pessoa from "./components/Pessoa";
-import SayMyName from "./components/SayMyname";
-import Frase from "./components/Frase";
-import List from "./components/List";
+import Evento from "./components/Evento";
+import Form from "./components/Form";
 
 function App() {
   return (
     <div className="App">
+      <Form />
       <h1>Testando Css</h1>
-      <Frase />
-      <Frase />
-      <SayMyName name="Fravon" />
-      <HelloWorld />
-      <Pessoa
-        profissao="Desenvolvedor Web Fullstack"
-        nome="Fravon"
-        idade="22"
-        foto="https://via.placeholder.com/150"
-      />
-      <List />
+      <h1>Testando eventos!</h1>
+      <Evento numero="1" />
     </div>
   );
 }
